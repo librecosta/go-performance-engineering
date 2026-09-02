@@ -1,0 +1,48 @@
+name: Proofs
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+    paths:
+      - "proofs/**"
+      - ".github/workflows/proofs.yml"
+
+  pull_request:
+    paths:
+      - "proofs/**"
+      - ".github/workflows/proofs.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify proofs
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: proofs
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: proofs/go.mod
+          cache: false
+
+      - name: Show Go version
+        run: go version
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Test proof contracts
+        run: go test -count=1 ./...
