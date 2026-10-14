@@ -84,6 +84,17 @@ Agent 的内部 Skill 使用英文，不限制最终回复语言。面向用户�
 
 - [Proof Guidelines](./proofs/README.md)
 
+## 技术文章与实验记录
+
+我们在 [Gopher Atlas](https://gopheratlas.com/) 发布与本项目对应的性能工程文章，将底层原理、工程取舍与可复现的实验证据关联起来。以下文章均提供简体中文和英文版本。
+
+| 研究主题 | 技术文章 | 可复现实验证据 |
+| --- | --- | --- |
+| **Slice Retention** — 为什么 100 字节能留住 100 MiB？ | [简体中文](https://gopheratlas.com/notes/go-performance/go-slice-retention-100-bytes-100-mib/) · [English](https://gopheratlas.com/notes/go-performance/go-slice-retention-100-bytes-100-mib-en/) | [Proof](./proofs/memory/slice-retention/) · [Windows 报告](./proofs/memory/slice-retention/reports/2026-10-14_win_go1269_bc122b8.md) · [Linux 报告](./proofs/memory/slice-retention/reports/2026-10-14_linux_go1269_bc122b8.md) |
+| **Heap Ballast（历史技术）** — Go GC 压舱石的原理与演变 | [简体中文](https://gopheratlas.com/notes/go-performance/go-gc-heap-ballast/) · [English](https://gopheratlas.com/notes/go-performance/go-gc-heap-ballast-en/) | [Proof](./proofs/memory/ballast/) · [Windows 报告](./proofs/memory/ballast/reports/2026-09-02_142711_80d692d.md) · [Linux 报告](./proofs/memory/ballast/reports/2026-10-14_linux_go1269_dab084e.md) |
+
+这些实验仅在明确记录的条件下证明具体机制，不宣称普遍的性能收益。历史技术用于理解原理与技术演变，不代表现代 Go 应用的默认实践建议。
+
 ## 核心理念
 
 ```text

@@ -1,5 +1,7 @@
 # Go Performance Engineering
 
+English | [简体中文](./README.zh-CN.md)
+
 Evidence-driven Go performance engineering with documentation, Agent Skill, and reproducible proofs.
 
 ## Overview
@@ -70,6 +72,17 @@ It does not claim:
 See:
 
 - [Proof Guidelines](./proofs/README.md)
+
+## Articles & Case Studies
+
+Articles published on [Gopher Atlas](https://gopheratlas.com/) connect Go performance concepts with reproducible experiments and documented evidence. Both English and Simplified Chinese editions are available.
+
+| Study | Articles | Reproducible evidence |
+| --- | --- | --- |
+| **Slice Retention** — How a 100-byte slice can keep a 100 MiB backing array alive | [English](https://gopheratlas.com/notes/go-performance/go-slice-retention-100-bytes-100-mib-en/) · [简体中文](https://gopheratlas.com/notes/go-performance/go-slice-retention-100-bytes-100-mib/) | [Proof](./proofs/memory/slice-retention/) · [Windows report](./proofs/memory/slice-retention/reports/2026-10-14_win_go1269_bc122b8.md) · [Linux report](./proofs/memory/slice-retention/reports/2026-10-14_linux_go1269_bc122b8.md) |
+| **Heap Ballast (Historical)** — The mechanism and evolution of a classic Go GC tuning technique | [English](https://gopheratlas.com/notes/go-performance/go-gc-heap-ballast-en/) · [简体中文](https://gopheratlas.com/notes/go-performance/go-gc-heap-ballast/) | [Proof](./proofs/memory/ballast/) · [Windows report](./proofs/memory/ballast/reports/2026-09-02_142711_80d692d.md) · [Linux report](./proofs/memory/ballast/reports/2026-10-14_linux_go1269_dab084e.md) |
+
+The experiments establish specific mechanisms under recorded conditions, not universal performance gains. Historical techniques are preserved for study and reproducibility, not as default recommendations for modern Go applications.
 
 ## Philosophy
 
