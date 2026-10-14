@@ -1,3 +1,3 @@
-module github.com/deepfurry/go-performance-engineering/proofs
+module github.com/librecosta/go-performance-engineering/proofs
 
-go 1.26
+go 1.26.0

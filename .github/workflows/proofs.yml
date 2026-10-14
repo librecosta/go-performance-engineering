@@ -7,11 +7,13 @@ on:
       - dev
     paths:
       - "proofs/**"
+      - ".go-version"
       - ".github/workflows/proofs.yml"
 
   pull_request:
     paths:
       - "proofs/**"
+      - ".go-version"
       - ".github/workflows/proofs.yml"
 
   workflow_dispatch:
@@ -21,8 +23,15 @@ permissions:
 
 jobs:
   verify:
-    name: Verify proofs
+    name: Verify proofs (Go ${{ matrix.go }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ["1.26.9", "1.27.2"]
+
+    env:
+      GOTOOLCHAIN: local
 
     defaults:
       run:
@@ -35,7 +44,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v6
         with:
-          go-version-file: proofs/go.mod
+          go-version: ${{ matrix.go }}
           cache: false
 
       - name: Show Go version

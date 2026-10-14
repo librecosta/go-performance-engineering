@@ -2,6 +2,34 @@
 
 Minimal reproducible experiments for Go performance engineering claims.
 
+## Running Proofs
+
+All current proofs share [go.mod](go.mod), with module path
+`github.com/librecosta/go-performance-engineering/proofs` and minimum Go language
+version `1.26.0`. Add new proof packages under this module without nested modules
+or a `go.work` file.
+
+The repository's [.go-version](../.go-version) selects Go **1.26.9** as the default
+experiment baseline. The Go command does not read that file automatically: use
+a version manager or explicitly select `GOTOOLCHAIN=go1.26.9` (PowerShell:
+`$env:GOTOOLCHAIN = 'go1.26.9'`) before running checks. Record the actual `go version`
+for every experiment. Historical reports retain the versions used at the time.
+
+From the repository root:
+
+```bash
+cd proofs
+go version
+go vet ./...
+go test -count=1 ./...
+```
+
+The [Proofs workflow](../.github/workflows/proofs.yml) runs these checks on Ubuntu
+with Go 1.26.9 and 1.27.2 when proofs, the version file, or the workflow change;
+it can also be dispatched manually. CI validates correctness and mechanism
+contracts, without formal benchmarks or timing/RSS performance gates. Individual
+proof READMEs document manual experiments and package-specific commands.
+
 ## Purpose
 
 Proofs demonstrate specific compiler, runtime, CPU, memory, and concurrency behaviors.

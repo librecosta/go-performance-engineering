@@ -47,9 +47,10 @@ as if unrelated runtime allocations were identical.
 
 ## Experiment
 
-Run commands from this directory. The independent module uses only the standard
-library and requires Go 1.24 or newer for `testing.B.Loop`; it does not force a
-toolchain upgrade.
+Run commands from this directory within the shared [Proof module](../../go.mod).
+It uses only the standard library, with minimum Go language version 1.26.0 and
+default experiment toolchain Go 1.26.9. See [toolchain selection and repository
+checks](../../README.md#running-proofs); these commands still target this proof.
 
 Experiments A and B run **one mode per process**. The CLI defaults to 100 MiB and
 100 retained bytes; `-size-mib` accepts 1..128, and `-keep-bytes` accepts

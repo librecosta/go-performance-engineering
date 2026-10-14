@@ -4,9 +4,15 @@
 |---|---|
 | Category | Memory / GC |
 | Proof type | Runtime mechanism |
-| Go baseline | Go 1.27 |
+| Default toolchain | Go 1.26.9; minimum language version 1.26.0 |
 | Evidence | L1 + L2 |
 | Recommendation | **Historical** |
+
+This proof uses the shared [Proof module](../../go.mod); see
+[toolchain selection and checks](../../README.md#running-proofs).
+The preserved [historical report](reports/2026-09-02_142711_80d692d.md) records
+Go 1.26.7 and its original experiment conditions. Its data and provenance have
+not been updated to the current baseline.
 
 ## Claim
 
