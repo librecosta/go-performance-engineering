@@ -1,0 +1,57 @@
+name: Proofs
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+    paths:
+      - "proofs/**"
+      - ".go-version"
+      - ".github/workflows/proofs.yml"
+
+  pull_request:
+    paths:
+      - "proofs/**"
+      - ".go-version"
+      - ".github/workflows/proofs.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify proofs (Go ${{ matrix.go }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ["1.26.9", "1.27.2"]
+
+    env:
+      GOTOOLCHAIN: local
+
+    defaults:
+      run:
+        working-directory: proofs
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: ${{ matrix.go }}
+          cache: false
+
+      - name: Show Go version
+        run: go version
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Test proof contracts
+        run: go test -count=1 ./...
